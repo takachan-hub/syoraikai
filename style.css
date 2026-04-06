@@ -369,14 +369,6 @@ a { text-decoration: none; color: inherit; }
   line-height: 2;
 }
 
-.hero-en {
-  font-family: var(--font-en);
-  font-style: italic;
-  font-size: clamp(0.7rem, 1.4vw, 0.9rem);
-  color: rgba(212, 175, 55, 0.5);
-  letter-spacing: 0.25em;
-  margin-top: 8px;
-}
 
 .hero-cta-wrap {
   margin-top: 48px;
@@ -450,34 +442,6 @@ a { text-decoration: none; color: inherit; }
 .btn-outline-gold:hover span { color: var(--color-black); }
 
 /* Scroll indicator */
-.hero-scroll {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.5;
-}
-.hero-scroll span {
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  color: var(--color-gold-dark);
-}
-.scroll-arrow {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(180deg, transparent 0%, var(--color-gold) 100%);
-  animation: scrollArrow 1.8s ease-in-out infinite;
-}
-@keyframes scrollArrow {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
 
 /* =============================================
    SECTION COMMON
@@ -548,7 +512,7 @@ a { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: center;
+  align-items: start;
 }
 
 .about-text-block {}
@@ -600,40 +564,40 @@ a { text-decoration: none; color: inherit; }
 
 .about-image-block {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .about-image-frame {
   position: relative;
-  border-radius: 2px;
-  overflow: hidden;
+  width: 100%;
+  /* overflow:hidden を外してmask-imageが画像全体に効くようにする */
 }
 .about-image-frame img {
   width: 100%;
-  aspect-ratio: 4/5;
+  /* 実画像比率 1535×2549 ≒ 3:5 に合わせる */
+  aspect-ratio: 3 / 5;
   object-fit: cover;
-  filter: brightness(0.85) contrast(1.05);
+  object-position: center top;
+  display: block;
+  filter: brightness(0.9) contrast(1.05);
   transition: transform 0.9s ease, filter 0.9s ease;
 }
 .about-image-frame:hover img {
-  transform: scale(1.04);
-  filter: brightness(0.92) contrast(1.02);
+  transform: scale(1.03);
+  filter: brightness(0.95) contrast(1.02);
 }
-/* Gold corner accents */
-.about-image-frame::before,
-.about-image-frame::after {
-  content: '';
-  position: absolute;
-  width: 36px; height: 36px;
-  border-color: var(--color-gold);
-  border-style: solid;
-  z-index: 2;
-}
-.about-image-frame::before {
-  top: -8px; left: -8px;
-  border-width: 1px 0 0 1px;
-}
-.about-image-frame::after {
-  bottom: -8px; right: -8px;
-  border-width: 0 1px 1px 0;
+
+/* 書道道具画像 — 4辺の縁をグラデーションでフェード */
+.about-img-vignette {
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0%,  black 18%, black 82%,  transparent 100%),
+    linear-gradient(to bottom, transparent 0%,  black 12%, black 88%,  transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    linear-gradient(to right,  transparent 0%,  black 18%, black 82%,  transparent 100%),
+    linear-gradient(to bottom, transparent 0%,  black 12%, black 88%,  transparent 100%);
+  mask-composite: intersect;
 }
 
 .about-image-caption {
@@ -768,29 +732,33 @@ a { text-decoration: none; color: inherit; }
 .shop-images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 .shop-image-card {
   position: relative;
   overflow: hidden;
   border-radius: 2px;
 }
+/* 1枚目：全幅フィーチャー */
 .shop-image-card:first-child {
   grid-column: 1 / -1;
 }
+/* 全カード共通 — 横長写真に合わせ 5:4 */
 .shop-image-card img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 5 / 4;
   object-fit: cover;
-  filter: brightness(0.8) contrast(1.1);
+  object-position: center center;
+  filter: brightness(0.88) contrast(1.08);
   transition: transform 0.8s ease, filter 0.8s ease;
 }
+/* 1枚目だけ少し横長に */
 .shop-image-card:first-child img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
 }
 .shop-image-card:hover img {
-  transform: scale(1.06);
-  filter: brightness(0.9) contrast(1.05);
+  transform: scale(1.05);
+  filter: brightness(0.95) contrast(1.04);
 }
 .shop-image-card::after {
   content: '';

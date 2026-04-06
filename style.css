@@ -1022,6 +1022,10 @@ a { text-decoration: none; color: inherit; }
 
   .hero-catchcopy {
     font-size: clamp(1.8rem, 10vw, 2.8rem);
+    /* 縦書き要素をコンテンツ幅に縮めて中央揃え（右寄り解消） */
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-line-left, .hero-line-right { display: none; }
 

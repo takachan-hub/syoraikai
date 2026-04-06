@@ -1001,6 +1001,25 @@ a { text-decoration: none; color: inherit; }
 
   .section { padding: 72px 0; }
 
+  /* ── HEROスマホ最適化 ──
+     catchcopy を画面中央に来るよう調整:
+     ・min-height を実際のスマホ文字サイズに合わせ削減
+     ・上下マージンを均等に縮小
+     ・hero-sub を非表示（コンテンツが減って縦方向に中央寄り）
+     ・hero-cta-wrap の余白を縮小
+  */
+  .hero-catchcopy-wrap {
+    min-height: calc(10vw * 6 * 1.25); /* 文字数×フォントサイズ×letter-spacing係数 */
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    display: none;
+  }
+  .hero-cta-wrap {
+    margin-top: 28px;
+  }
+
   .hero-catchcopy {
     font-size: clamp(1.8rem, 10vw, 2.8rem);
   }

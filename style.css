@@ -334,6 +334,30 @@ a { text-decoration: none; color: inherit; }
   gap: 0;
 }
 
+
+/* ── Hero Site Title h1 (SEO + 装飾) ── */
+.hero-site-title {
+  font-family: var(--font-ja);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+}
+.hero-site-title-reading {
+  display: block;
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: rgba(212, 175, 55, 0.65);
+  -webkit-text-fill-color: rgba(212, 175, 55, 0.65);
+  margin-top: 4px;
+}
+
 /* Vertical writing catchcopy */
 .hero-catchcopy-wrap {
   display: block;

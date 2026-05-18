@@ -7,8 +7,9 @@ window.addEventListener('scroll', () => {
 
 // ── Hero bg zoom on load ──────────────────────
 const heroBg = document.getElementById('heroBg');
-window.addEventListener('load', () => {
-  setTimeout(() => heroBg.classList.add('loaded'), 100);
+// window.load（全リソース完了）ではなく DOMContentLoaded で即トリガー
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => heroBg.classList.add('loaded'), 50);
 });
 
 // ── Hamburger / Mobile menu ───────────────────

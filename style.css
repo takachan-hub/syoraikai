@@ -1,3 +1,17 @@
+/* フォント未読込中もテキストを即時表示（FOUT許容） */
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-display: swap;
+}
+
 
 /* =============================================
    CSS CUSTOM PROPERTIES
@@ -76,6 +90,26 @@ a { text-decoration: none; color: inherit; }
   height: 1px;
   background: var(--gold-gradient-h);
   margin: 0 auto;
+}
+
+
+/* =============================================
+   HERO FADE-IN — CSS アニメーション（JS不要・即時実行）
+   スマホ初期表示の遅延を解消するため transition ではなく
+   animation を使い、ページ描画と同時にフェードイン開始。
+============================================= */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-fade-1 {
+  animation: heroFadeUp 0.9s ease 0.05s both;
+}
+.hero-fade-2 {
+  animation: heroFadeUp 0.9s ease 0.2s both;
+}
+.hero-fade-3 {
+  animation: heroFadeUp 0.9s ease 0.4s both;
 }
 
 /* =============================================
@@ -323,6 +357,13 @@ h1.header-logo a {
   transition: transform 8s ease;
 }
 .hero-bg.loaded { transform: scale(1); }
+/* Hero 背景: モバイルでは小サイズ画像を使用（転送量削減） */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-image: url('https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=800&q=75&auto=format&fit=crop');
+  }
+}
+
 
 /* Gold ink splash overlay */
 .hero-overlay {

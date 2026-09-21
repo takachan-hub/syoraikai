@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # サイトマップの場所をGoogleに伝える
-Sitemap: https://takachan-hub.github.io/syoraikai/sitemap.xml
+Sitemap: https://syoraikai.pages.dev/sitemap.xml

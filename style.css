@@ -337,15 +337,15 @@ h1.header-logo a {
 ============================================= */
 #hero {
   position: relative;
-  height: 100vh;
-  height: 100svh;
-  min-height: 640px;
+  /* 画面いっぱいを基本に、中身が収まらない低い画面では高さを伸ばす（固定高さだとボタンが切れる） */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   /* header offset: prevent top clip */
-  padding-top: var(--header-h);
+  padding: calc(var(--header-h) + 16px) 0 32px;
   box-sizing: border-box;
 }
 
@@ -406,17 +406,19 @@ h1.header-logo a {
 .hero-catchcopy-wrap {
   display: block;
   position: relative;
-  margin-top: 48px;
-  margin-bottom: 40px;
-  /* writing-mode:vertical-rl の高さをflexに明示 */
-  min-height: 440px;
+  margin-top: clamp(8px, 3vh, 40px);
+  margin-bottom: clamp(16px, 3.5vh, 40px);
+  /* 縦書きコピーの文字サイズ。画面の幅と高さの小さい方に合わせる */
+  font-size: clamp(2.2rem, min(6vw, 7vh), 4.2rem);
+  /* writing-mode:vertical-rl の高さをflexに明示（1列5文字 × 字送り1.2em） */
+  min-height: 6.2em;
 }
 
 .hero-catchcopy {
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-family: var(--font-ja);
-  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-size: 1em;
   font-weight: 700;
   letter-spacing: 0.2em;
   background: var(--gold-gradient);
@@ -438,7 +440,7 @@ h1.header-logo a {
 }
 
 .hero-intro {
-  margin-top: 20px;
+  margin-top: clamp(8px, 2vh, 20px);
   font-size: 0.95rem;
   color: rgba(232, 224, 200, 0.82);
   letter-spacing: 0.1em;
@@ -447,7 +449,7 @@ h1.header-logo a {
 
 
 .hero-cta-wrap {
-  margin-top: 40px;
+  margin-top: clamp(20px, 4vh, 40px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1207,8 +1209,8 @@ h1.header-logo a {
      ・hero-cta-wrap の余白を縮小
   */
   .hero-catchcopy-wrap {
-    min-height: calc(10vw * 6 * 1.25); /* 文字数×フォントサイズ×letter-spacing係数 */
-    margin-top: 16px;
+    font-size: clamp(1.8rem, min(10vw, 6vh), 2.8rem);
+    margin-top: 8px;
     margin-bottom: 16px;
   }
   .hero-sub {
@@ -1232,7 +1234,6 @@ h1.header-logo a {
   }
 
   .hero-catchcopy {
-    font-size: clamp(1.8rem, 10vw, 2.8rem);
     /* 縦書き要素をコンテンツ幅に縮めて中央揃え（右寄り解消） */
     width: max-content;
     margin-left: auto;

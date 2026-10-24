@@ -23,7 +23,8 @@
   --color-panel:     #1a1a1a;
   --color-border:    #2a2a2a;
   --color-text:      #e8dfc8;
-  --color-text-muted:#9a8f78;
+  --color-text-muted:#ab9f86;
+  --color-sumi:      #14120f;
   --color-gold:      #D4AF37;
   --color-gold-light:#F5E17A;
   --color-gold-dark: #A07E1A;
@@ -48,6 +49,7 @@ body {
   font-family: var(--font-ja);
   line-height: 1.8;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -223,9 +225,9 @@ h1.header-logo a {
 }
 .header-nav a {
   font-family: var(--font-ja);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  color: var(--color-text);
   transition: color var(--transition);
   position: relative;
   padding-bottom: 3px;
@@ -250,8 +252,8 @@ h1.header-logo a {
   gap: 14px;
 }
 .header-sns a {
-  font-size: 0.88rem;
-  color: var(--color-gold-dark);
+  font-size: 1rem;
+  color: var(--color-gold);
   transition: color var(--transition), transform var(--transition);
 }
 .header-sns a:hover {
@@ -336,6 +338,7 @@ h1.header-logo a {
 #hero {
   position: relative;
   height: 100vh;
+  height: 100svh;
   min-height: 640px;
   display: flex;
   align-items: center;
@@ -426,27 +429,39 @@ h1.header-logo a {
 
 .hero-sub {
   font-family: var(--font-ja);
-  font-size: clamp(0.82rem, 1.8vw, 1rem);
-  font-weight: 300;
-  color: rgba(232, 224, 200, 0.72);
-  letter-spacing: 0.3em;
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  font-weight: 400;
+  color: rgba(232, 224, 200, 0.88);
+  letter-spacing: 0.24em;
   margin-top: 0;
   line-height: 2;
 }
 
+.hero-intro {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: rgba(232, 224, 200, 0.82);
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+}
+
 
 .hero-cta-wrap {
-  margin-top: 48px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 24px;
 }
 
 .btn-gold {
   display: inline-block;
   position: relative;
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-family: var(--font-ja);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   color: var(--color-black);
   background: var(--gold-gradient);
   border: none;
@@ -471,11 +486,11 @@ h1.header-logo a {
 
 .btn-outline-gold {
   display: inline-block;
-  padding: 14px 44px;
+  padding: 15px 40px;
   font-family: var(--font-ja);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   color: var(--color-gold);
   background: transparent;
   border: 1px solid var(--color-gold-dark);
@@ -513,13 +528,16 @@ h1.header-logo a {
 ============================================= */
 .section {
   padding: 100px 0;
+  /* フェードイン中の横移動でページ幅がはみ出さないように */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 .section-label {
   font-family: var(--font-en);
   font-style: italic;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   letter-spacing: 0.4em;
-  color: var(--color-gold-dark);
+  color: var(--color-gold);
   text-transform: uppercase;
   display: block;
   margin-bottom: 12px;
@@ -539,7 +557,7 @@ h1.header-logo a {
   font-family: var(--font-en);
   font-size: clamp(0.75rem, 1.5vw, 0.88rem);
   letter-spacing: 0.3em;
-  color: rgba(212, 175, 55, 0.38);
+  color: rgba(212, 175, 55, 0.6);
   margin-top: 6px;
   display: block;
 }
@@ -577,41 +595,53 @@ h1.header-logo a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: start;
+  align-items: center;
 }
 
 .about-text-block {}
 .about-text-block .section-divider { margin-bottom: 36px; }
 
+.about-motto {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+
 .about-lead {
-  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
-  font-weight: 300;
-  line-height: 2.2;
-  color: rgba(232, 224, 200, 0.88);
-  letter-spacing: 0.06em;
-  margin-bottom: 40px;
+  font-size: clamp(1rem, 1.8vw, 1.08rem);
+  font-weight: 400;
+  line-height: 2.1;
+  color: rgba(232, 224, 200, 0.92);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
 }
 
 .about-quote {
   border-left: 2px solid var(--color-gold-dark);
   padding: 20px 24px;
-  background: rgba(212,175,55,0.04);
-  margin: 36px 0;
+  background: rgba(212,175,55,0.05);
+  margin: 32px 0 0;
 }
 .about-quote p {
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: rgba(232, 224, 200, 0.75);
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(232, 224, 200, 0.88);
   line-height: 2;
   letter-spacing: 0.08em;
 }
 
 .about-signature {
-  margin-top: 40px;
+  margin-top: 32px;
   text-align: right;
 }
 .about-signature .title {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.25em;
   color: var(--color-text-muted);
   margin-bottom: 6px;
@@ -641,7 +671,7 @@ h1.header-logo a {
 .about-image-frame img {
   width: 100%;
   /* 実画像比率 1535×2549 ≒ 3:5 に合わせる */
-  aspect-ratio: 3 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -665,6 +695,33 @@ h1.header-logo a {
   mask-composite: intersect;
 }
 
+.about-bridge {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+.about-bridge p {
+  font-size: 1.05rem;
+  color: rgba(232, 224, 200, 0.92);
+  letter-spacing: 0.08em;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+.about-bridge-link {
+  display: inline-block;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--color-gold-dark);
+  transition: color var(--transition), border-color var(--transition);
+}
+.about-bridge-link:hover {
+  color: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+}
+
 .about-image-caption {
   position: absolute;
   bottom: 16px;
@@ -681,7 +738,7 @@ h1.header-logo a {
    ONLINE SHOP (Most Important)
 ============================================= */
 #shop {
-  background: #0e0e0e;
+  background: var(--color-black);
   position: relative;
   overflow: hidden;
 }
@@ -741,12 +798,12 @@ h1.header-logo a {
 }
 
 .shop-desc {
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: rgba(232, 224, 200, 0.72);
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(232, 224, 200, 0.88);
   line-height: 2.1;
-  letter-spacing: 0.06em;
-  margin-bottom: 44px;
+  letter-spacing: 0.05em;
+  margin-bottom: 40px;
 }
 
 .shop-cta {
@@ -754,9 +811,9 @@ h1.header-logo a {
   position: relative;
   padding: 20px 52px;
   font-family: var(--font-ja);
-  font-size: 0.86rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   color: var(--color-black);
   background: var(--gold-gradient);
   border: none;
@@ -788,9 +845,9 @@ h1.header-logo a {
 }
 
 .shop-note {
-  margin-top: 16px;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   color: var(--color-text-muted);
 }
 
@@ -938,6 +995,69 @@ h1.header-logo a {
 }
 
 /* =============================================
+   SNS — 書とことばの発信
+============================================= */
+#sns {
+  background: var(--color-sumi);
+  border-top: 1px solid rgba(212,175,55,0.1);
+}
+.sns-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+.sns-header .section-divider {
+  max-width: 280px;
+  margin: 24px auto 28px;
+}
+.sns-desc {
+  font-size: 1rem;
+  color: rgba(232, 224, 200, 0.9);
+  line-height: 2;
+  letter-spacing: 0.05em;
+}
+.sns-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 280px));
+  justify-content: center;
+  gap: 20px;
+}
+.sns-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 16px;
+  background: #1b1916;
+  border: 1px solid rgba(212,175,55,0.22);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.sns-card i {
+  font-size: 1.9rem;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+}
+.sns-card-name {
+  font-family: var(--font-en);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+}
+.sns-card-id {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+.sns-card:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(212,175,55,0.15);
+}
+
+/* 改行の出し分け */
+.sp-only { display: none; }
+
+/* =============================================
    FOOTER
 ============================================= */
 #footer {
@@ -963,7 +1083,7 @@ h1.header-logo a {
   font-style: italic;
   font-size: 0.75rem;
   letter-spacing: 0.4em;
-  color: rgba(212,175,55,0.35);
+  color: rgba(212,175,55,0.6);
   margin-bottom: 40px;
   display: block;
 }
@@ -989,7 +1109,7 @@ h1.header-logo a {
   width: 44px; height: 44px;
   border: 1px solid rgba(212,175,55,0.18);
   font-size: 1rem;
-  color: var(--color-gold-dark);
+  color: var(--color-gold);
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
@@ -1019,8 +1139,8 @@ h1.header-logo a {
   margin-bottom: 36px;
 }
 .footer-nav a {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
   color: var(--color-text-muted);
   transition: color var(--transition);
 }
@@ -1028,9 +1148,9 @@ h1.header-logo a {
 
 .footer-copy {
   font-family: var(--font-en);
-  font-size: 0.68rem;
-  letter-spacing: 0.25em;
-  color: rgba(154, 143, 120, 0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(171, 159, 134, 0.75);
 }
 
 /* =============================================
@@ -1041,8 +1161,16 @@ h1.header-logo a {
   .header-sns  { display: none; }
   .hamburger   { display: flex; }
 
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  /* 横方向のフェードは画面外へのはみ出しの原因になるため縦方向に */
+  .fade-in-left, .fade-in-right { transform: translateY(32px); }
+  .fade-in-left.visible, .fade-in-right.visible { transform: translateY(0); }
+
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-image-block { order: -1; }
+  .about-image-frame { max-width: 480px; margin: 0 auto; }
+  .about-image-frame img { aspect-ratio: 4 / 3; object-position: center; }
+  .about-bridge { margin-top: 56px; padding-top: 40px; }
+  .pc-only { display: none; }
   .about-image-caption { left: 0; }
 
   .shop-inner { padding: 48px 32px; }
@@ -1064,7 +1192,12 @@ h1.header-logo a {
 @media (max-width: 600px) {
   :root { --header-h: 60px; }
 
-  .section { padding: 72px 0; }
+  .container { padding: 0 20px; }
+  .section { padding: 56px 0; }
+  .section-divider { margin: 20px 0 28px; }
+  .about-text-block .section-divider,
+  .shop-text .section-divider { margin-bottom: 28px; }
+  .sp-only { display: inline; }
 
   /* ── HEROスマホ最適化 ──
      catchcopy を画面中央に来るよう調整:
@@ -1081,8 +1214,21 @@ h1.header-logo a {
   .hero-sub {
     display: none;
   }
+  .hero-intro {
+    margin-top: 4px;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
   .hero-cta-wrap {
-    margin-top: 28px;
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-gold, .btn-outline-gold {
+    width: min(100%, 300px);
+    padding: 15px 20px;
+    text-align: center;
   }
 
   .hero-catchcopy {
@@ -1094,7 +1240,8 @@ h1.header-logo a {
   }
   .hero-line-left, .hero-line-right { display: none; }
 
-  .shop-inner { padding: 36px 20px; }
+  .shop-inner { padding: 28px 16px; }
+  .shop-grid { gap: 32px; }
   .shop-images { grid-template-columns: 1fr; }
   .shop-image-card:first-child { grid-column: auto; }
   .shop-cta { width: 100%; text-align: center; padding: 18px 24px; }
@@ -1104,8 +1251,17 @@ h1.header-logo a {
   }
   .gallery-item img { min-height: 220px; }
 
-  .footer-sns { gap: 16px; }
-  .footer-nav { gap: 20px; }
+  .about-bridge { margin-top: 44px; padding-top: 32px; }
+  .about-bridge p { font-size: 1rem; }
+
+  .sns-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sns-card { padding: 22px 8px; }
+  .sns-card-id { font-size: 0.82rem; }
+
+  #footer { padding: 48px 0 32px; }
+  .footer-logo-en { margin-bottom: 24px; }
+  .footer-sns { gap: 16px; margin-bottom: 28px; }
+  .footer-nav { gap: 12px 20px; }
 }
 
 /* =============================================
@@ -1132,173 +1288,16 @@ h1.header-logo a {
   90%  { opacity: 0.3; transform: translateY(-120px) scale(0.6); }
   100% { opacity: 0; transform: translateY(-140px) scale(0); }
 }
-  
+
 /* =============================================
-   REPRESENTATIVE PROFILE
+   動きを減らす設定の利用者向け
 ============================================= */
-.profile-section {
-  padding: 80px 0 40px;
-  border-top: 1px solid var(--color-border);
-  margin-top: 64px;
-}
-
-.profile-inner {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 56px;
-  align-items: center;
-}
-
-.profile-photo-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.profile-photo-frame {
-  position: relative;
-  width: 240px;
-  height: 300px;
-  overflow: hidden;
-}
-
-.profile-photo-frame::before {
-  content: '';
-  position: absolute;
-  top: -8px; left: -8px;
-  right: 8px; bottom: 8px;
-  border: 1px solid var(--color-gold-dark);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.profile-photo-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.7) 100%);
-  z-index: 2;
-}
-
-.profile-photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  filter: grayscale(15%) contrast(1.05);
-  transition: transform 0.7s ease, filter 0.7s ease;
-}
-
-.profile-photo-frame:hover img {
-  transform: scale(1.04);
-  filter: grayscale(0%) contrast(1.05);
-}
-
-.profile-name-badge {
-  background: var(--color-dark);
-  border: 1px solid var(--color-gold-dark);
-  padding: 10px 24px;
-}
-
-.profile-name-badge .title {
-  display: block;
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  color: var(--color-gold);
-  font-family: var(--font-ja);
-  margin-bottom: 2px;
-}
-
-.profile-name-badge .name {
-  display: block;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: var(--font-ja);
-}
-
-.profile-text-block {
-  padding-left: 8px;
-}
-
-.profile-text-block .section-label {
-  display: block;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  color: var(--color-gold);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.profile-text-block h3 {
-  font-family: var(--font-ja);
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 6px;
-}
-
-.profile-text-block .name-en {
-  display: block;
-  font-family: var(--font-en);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.18em;
-  margin-bottom: 24px;
-}
-
-.profile-bio {
-  font-family: var(--font-ja);
-  font-size: 0.88rem;
-  line-height: 2.1;
-  color: rgba(232, 224, 200, 0.78);
-  margin-bottom: 24px;
-}
-
-.profile-awards {
-  list-style: none;
-  border-left: 2px solid var(--color-gold-dark);
-  padding-left: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.profile-awards li {
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  font-family: var(--font-ja);
-  line-height: 1.6;
-}
-
-.profile-awards li strong {
-  color: var(--color-gold);
-}
-
-/* Responsive: profile */
-@media (max-width: 700px) {
-  .profile-inner {
-    grid-template-columns: 1fr;
-    gap: 48px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  .profile-photo-wrap {
-    display: flex;
-    justify-content: center;
-  }
-  .profile-photo-frame {
-    width: 200px;
-    height: 250px;
-  }
+  .particles { display: none; }
 }

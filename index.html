@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L0B9Z2JX94"></script>
+  <!-- Google tag (gtag.js)：正式URL（canonical と同じホスト）のときだけ計測する。プレビュー・ローカルでは送信しない -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L0B9Z2JX94');
+    (function () {
+      var GA_MEASUREMENT_ID = 'G-L0B9Z2JX94';
+      var PRODUCTION_HOSTNAME = 'syoraikai.pages.dev';
+      if (location.hostname !== PRODUCTION_HOSTNAME) return;
+      var tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(tag);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    })();
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -100,11 +107,7 @@
       "foundingDate": "2020",
       "sameAs": [
         "https://www.youtube.com/@akira_syodoka",
-        "https://www.instagram.com/akira_syodoka",
-        "https://x.com/akira_syodo",
-        "https://www.tiktok.com/@syodoka_akira",
-        "https://www.facebook.com/akira.takayanagi.90",
-        "https://www.threads.com/@akira_syodoka"
+        "https://www.instagram.com/akira_syodoka"
       ],
       "member": {
         "@type": "Person",
@@ -113,8 +116,7 @@
         "jobTitle": "書道家・翔来会代表",
         "sameAs": [
           "https://www.youtube.com/@akira_syodoka",
-          "https://www.instagram.com/akira_syodoka",
-          "https://x.com/akira_syodo"
+          "https://www.instagram.com/akira_syodoka"
         ]
       }
     },
@@ -128,10 +130,7 @@
       "url": "https://syoraikai.pages.dev/",
       "sameAs": [
         "https://www.youtube.com/@akira_syodoka",
-        "https://www.instagram.com/akira_syodoka",
-        "https://x.com/akira_syodo",
-        "https://www.tiktok.com/@syodoka_akira",
-        "https://www.facebook.com/akira.takayanagi.90"
+        "https://www.instagram.com/akira_syodoka"
       ]
     }
   ]
@@ -150,18 +149,15 @@
 
         <div class="header-right">
           <ul class="header-nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#shop">Online Shop</a></li>
+            <li><a href="#about">翔来会について</a></li>
+            <li><a href="#shop">オリジナルTシャツ</a></li>
+            <li><a href="#sns">発信</a></li>
           </ul>
           <div class="header-sns">
-            <a href="https://www.youtube.com/@akira_syodoka" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@syodoka_akira" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/akira_syodoka" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/akira.takayanagi.90" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://x.com/akira_syodo" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.threads.com/@akira_syodoka?igshid=NTc4MTIwNjQ2YQ==" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://www.youtube.com/@akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-ga-location="header"><i class="fa-brands fa-instagram"></i></a>
           </div>
-          <button class="hamburger" id="hamburger" aria-label="メニュー">
+          <button class="hamburger" id="hamburger" aria-label="メニュー" aria-controls="mobileMenu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -172,16 +168,13 @@
   <!-- Mobile Menu Overlay -->
   <div class="mobile-menu" id="mobileMenu">
     <nav>
-      <a href="#about"   id="mobileNav1">About</a>
-      <a href="#shop"    id="mobileNav2">Online Shop</a>
+      <a href="#about">翔来会について</a>
+      <a href="#shop">オリジナルTシャツ</a>
+      <a href="#sns">書とことばの発信</a>
     </nav>
     <div class="mobile-sns">
-      <a href="https://www.youtube.com/@akira_syodoka" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.tiktok.com/@syodoka_akira" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://www.instagram.com/akira_syodoka" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/akira.takayanagi.90" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://x.com/akira_syodo" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="https://www.threads.com/@akira_syodoka?igshid=NTc4MTIwNjQ2YQ==" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://www.youtube.com/@akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com/akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-ga-location="header"><i class="fa-brands fa-instagram"></i></a>
     </div>
   </div>
 
@@ -202,9 +195,9 @@
         <p class="hero-catchcopy">墨に宿る、<br>魂の躍動。</p>
       </div>
       <p class="hero-sub hero-fade-2">書の道に、己の全てを注ぐ。<br>一筆に込めた魂が、世界へと翔ける。</p>
+      <p class="hero-intro hero-fade-2">書道作品や筆文字の発信と、<br class="sp-only">書をデザインしたオリジナルTシャツを<br class="sp-only">お届けしています。</p>
       <div class="hero-cta-wrap hero-fade-3">
-        <a href="#shop" class="btn-gold">Online Shop</a>
-        &nbsp;&nbsp;&nbsp;
+        <a href="#shop" class="btn-gold">オリジナルTシャツを見る</a>
         <a href="#about" class="btn-outline-gold"><span>翔来会について</span></a>
       </div>
     </div>
@@ -225,19 +218,22 @@
           <span class="section-title-en">The Soul of Japanese Calligraphy</span>
           <div class="section-divider"><div class="divider-diamond"></div></div>
 
+          <p class="about-motto">「書は人なり」</p>
+
           <p class="about-lead">
-            翔来会は、書道という伝統芸術を通じ、<br>
-            現代に生きる人々の魂に触れることを使命とした集いです。<br><br>
-            墨の一筆一筆に込められた「気」と「呼吸」。<br>
-            余白の美しさと、力強い線の躍動感。<br>
-            東洋の美意識が宿るその世界観を、日常へと解放します。
+            筆先に現れる一本の線には、書く人の生き方がそのまま表れます。<br>
+            翔来会は、この言葉を胸に、書と向き合い続ける集いです。
+          </p>
+
+          <p class="about-lead">
+            書道作品や筆文字を YouTube・Instagram で発信するとともに、
+            書をデザインに取り入れたオリジナルTシャツをお届けしています。
           </p>
 
           <div class="about-quote">
             <p>
-              「書は人なり」——筆先に現れる線は、その人の生き様そのもの。<br>
-              私たちは書道を通じ、自己と向き合い、内なる声を形にする旅を続けています。<br>
-              その軌跡が、見る人の心に何かを灯せたなら、これ以上の喜びはありません。
+              墨の濃淡、余白の静けさ、力強い線の躍動。<br>
+              一筆ごとに込めた思いが、見る人の心に何かを灯せたなら、これ以上の喜びはありません。
             </p>
           </div>
 
@@ -250,10 +246,6 @@
         <!-- Image -->
         <div class="about-image-block fade-in-right">
           <div class="about-image-frame">
-            <!--
-              ▼ 書道作品の画像
-              差し替える場合は images/calligraphy-main.jpg を配置してください
-            -->
             <img
               src="images/calligraphy-tools.jpeg"
               alt="書道道具 — 翔来会"
@@ -265,41 +257,11 @@
 
       </div>
 
-      <!-- ── Representative Profile ── -->
-      <div class="profile-section">
-        <div class="profile-inner">
-
-          <!-- Photo -->
-          <div class="profile-photo-wrap fade-in-left">
-            <div class="profile-photo-frame">
-              <img
-                src="images/representative.png"
-                onerror="this.onerror=null"
-                alt="翔来会 代表 高柳 亮"
-                loading="lazy"
-              />
-            </div>
-            <div class="profile-name-badge">
-              <span class="title">翔来会 代表</span>
-              <span class="name">高柳 亮</span>
-            </div>
-          </div>
-
-          <!-- Bio -->
-          <div class="profile-text-block fade-in-right">
-            <span class="section-label">Representative</span>
-            <h3>高柳 亮</h3>
-            <span class="name-en">Akira Takayanagi</span>
-
-            <p class="profile-bio">
-              伝統の型に宿る精神性を探求しながら、現代に生きる表現としての書を追求し続ける。<br>
-              「一筆に魂を込める」という信念のもと、翔来会を設立。
-            </p>
-          </div>
-
-        </div>
+      <!-- 理念 → 商品紹介への導線 -->
+      <div class="about-bridge fade-in">
+        <p>その書の表現を、日常で身にまとえる形にしたのが、<br class="pc-only">翔来会のオリジナルTシャツです。</p>
+        <a href="#shop" class="about-bridge-link">オリジナルTシャツを見る <span aria-hidden="true">↓</span></a>
       </div>
-      <!-- ── / Representative Profile ── -->
 
     </div>
   </section>
@@ -314,8 +276,8 @@
 
           <!-- Text & CTA -->
           <div class="shop-text fade-in-left">
-            <span class="section-label">Original Goods</span>
-            <h2 class="section-title-ja">Online Shop</h2>
+            <span class="section-label">Online Shop</span>
+            <h2 class="section-title-ja">オリジナルTシャツ</h2>
             <span class="section-title-en">Wear the Spirit of Calligraphy</span>
             <div class="section-divider"><div class="divider-diamond"></div></div>
 
@@ -335,9 +297,9 @@
               rel="noopener noreferrer"
               class="shop-cta"
             >
-              オリジナルTシャツのご購入はこちら
+              ショップでTシャツを見る
             </a>
-            <p class="shop-note">↗ syoraikai.original-goods.jp</p>
+            <p class="shop-note">外部のショップサイト（syoraikai.original-goods.jp）が開きます</p>
           </div>
 
           <!-- Product Images -->
@@ -364,6 +326,32 @@
     </div>
   </section>
 
+  <!-- =============================================
+       SNS — 書とことばの発信
+  ============================================= -->
+  <section id="sns" class="section">
+    <div class="container">
+      <div class="sns-header fade-in">
+        <span class="section-label">Follow</span>
+        <h2 class="section-title-ja">書とことばの発信</h2>
+        <div class="section-divider"><div class="divider-diamond"></div></div>
+        <p class="sns-desc">翔来会代表・高柳亮が、書道作品や筆文字を通じて、日々の思いやことばを発信しています。</p>
+      </div>
+
+      <div class="sns-cards fade-in">
+        <a class="sns-card" href="https://www.youtube.com/@akira_syodoka" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          <span class="sns-card-name">YouTube</span>
+          <span class="sns-card-id">@akira_syodoka</span>
+        </a>
+        <a class="sns-card" href="https://www.instagram.com/akira_syodoka" target="_blank" rel="noopener noreferrer" data-ga-location="other">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          <span class="sns-card-name">Instagram</span>
+          <span class="sns-card-id">@akira_syodoka</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- =============================================
        FOOTER
@@ -376,18 +364,15 @@
       <div class="footer-divider"></div>
 
       <div class="footer-sns">
-        <a href="https://www.youtube.com/@akira_syodoka" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@syodoka_akira" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/akira_syodoka" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/akira.takayanagi.90" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://x.com/akira_syodo" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.threads.com/@akira_syodoka?igshid=NTc4MTIwNjQ2YQ==" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+        <a href="https://www.youtube.com/@akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.instagram.com/akira_syodoka" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-ga-location="footer"><i class="fa-brands fa-instagram"></i></a>
       </div>
 
       <nav class="footer-nav">
-        <a href="#about">About</a>
-        <a href="#shop">Online Shop</a>
-        <a href="https://syoraikai.original-goods.jp" target="_blank" rel="noopener noreferrer">オリジナルグッズ</a>
+        <a href="#about">翔来会について</a>
+        <a href="#shop">オリジナルTシャツ</a>
+        <a href="#sns">書とことばの発信</a>
+        <a href="https://syoraikai.original-goods.jp" target="_blank" rel="noopener noreferrer">オンラインショップ</a>
       </nav>
 
       <p class="footer-copy">© 2026 Syoraikai. All Rights Reserved.</p>

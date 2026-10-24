@@ -21,6 +21,7 @@ function toggleMenu(force) {
   const open = force !== undefined ? force : !hamburger.classList.contains('open');
   hamburger.classList.toggle('open', open);
   mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', String(open));
   document.body.style.overflow = open ? 'hidden' : '';
 }
 

@@ -87,3 +87,44 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
   
+// ── GA4: YouTube・Instagram のリンククリック計測 ──
+// 仕様の正本は月次Webレポート docs/GA4_SETUP.md 6章（youtube_click / instagram_click + link_location）
+// - GA4 タグは正式ホストでだけ読み込むため、プレビュー・GitHub Pages では window.gtag が無く何も送らない
+// - 遷移は妨げない（preventDefault しない。リンクはすべて新しいタブで開く）
+// - 同じリンクの連続クリック（ダブルクリック等）は1回だけ送る
+(() => {
+  const MAX_PARAM_LENGTH = 100;   // GA4 のイベントパラメータ値の上限
+  const DUPLICATE_WINDOW_MS = 1000;
+  const LINK_EVENTS = [
+    { eventName: 'instagram_click', matches: (url) => /(^|\.)instagram\.com$/.test(url.hostname) },
+    { eventName: 'youtube_click',   matches: (url) => /(^|\.)youtube\.com$/.test(url.hostname) || url.hostname === 'youtu.be' },
+  ];
+  const lastSentAt = new WeakMap();
+
+  const linkText = (link) =>
+    (link.textContent.replace(/\s+/g, ' ').trim() || link.getAttribute('aria-label') || '').slice(0, MAX_PARAM_LENGTH);
+
+  document.addEventListener('click', (event) => {
+    if (typeof window.gtag !== 'function') return;
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    let url;
+    try {
+      url = new URL(link.href);
+    } catch (error) {
+      return;
+    }
+    const match = LINK_EVENTS.find((item) => item.matches(url));
+    if (!match) return;
+
+    const now = Date.now();
+    if (now - (lastSentAt.get(link) || 0) < DUPLICATE_WINDOW_MS) return;
+    lastSentAt.set(link, now);
+
+    window.gtag('event', match.eventName, {
+      link_location: link.dataset.gaLocation || 'other',
+      link_text: linkText(link),
+      link_url: `${url.origin}${url.pathname}`.slice(0, MAX_PARAM_LENGTH),
+    });
+  });
+})();
